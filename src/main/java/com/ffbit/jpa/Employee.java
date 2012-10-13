@@ -22,6 +22,16 @@ public class Employee implements Serializable {
     private String name;
     private BigDecimal salary;
 
+    private Employee() {
+        super();
+    }
+
+    public Employee(String name, BigDecimal salary) {
+        this();
+        this.name = name;
+        this.salary = salary;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
