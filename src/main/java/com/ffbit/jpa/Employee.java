@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +22,7 @@ public class Employee implements Serializable {
     private Long id;
     private String name;
     private BigDecimal salary;
+    private ParkingPlace parkingPlace;
 
     private Employee() {
         super();
@@ -58,6 +60,15 @@ public class Employee implements Serializable {
 
     public void setSalary(BigDecimal salary) {
         this.salary = salary;
+    }
+
+    @OneToOne(optional = true)
+    public ParkingPlace getParkingPlace() {
+        return parkingPlace;
+    }
+
+    public void setParkingPlace(ParkingPlace parkingPlace) {
+        this.parkingPlace = parkingPlace;
     }
 
 }
