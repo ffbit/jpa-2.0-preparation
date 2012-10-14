@@ -22,7 +22,7 @@ public class ParkingPlace implements Serializable {
     private Integer lot;
     private String location;
 
-    private ParkingPlace() {
+    protected ParkingPlace() {
         super();
     }
 

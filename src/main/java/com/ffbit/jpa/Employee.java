@@ -24,7 +24,7 @@ public class Employee implements Serializable {
     private BigDecimal salary;
     private ParkingPlace parkingPlace;
 
-    private Employee() {
+    protected Employee() {
         super();
     }
 
