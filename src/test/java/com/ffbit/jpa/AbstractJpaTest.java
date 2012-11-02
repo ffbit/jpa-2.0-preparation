@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:application-context.xml")
-public class AbstractJpaTest {
+public abstract class AbstractJpaTest {
     @PersistenceContext
     protected EntityManager em;
 
