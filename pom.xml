@@ -20,6 +20,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <com.google.guava.version>13.0.1</com.google.guava.version>
         <junit.version>4.10</junit.version>
         <log4j.version>1.2.17</log4j.version>
         <org.hibernate.version>4.1.7.Final</org.hibernate.version>
@@ -62,6 +63,12 @@
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <version>${org.hsqldb.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${com.google.guava.version}</version>
         </dependency>
 
         <!-- Logging -->

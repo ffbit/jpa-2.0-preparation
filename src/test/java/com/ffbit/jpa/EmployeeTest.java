@@ -19,6 +19,10 @@ public class EmployeeTest extends AbstractJpaTest {
         salary = new BigDecimal("80000.50");
         employee = new Employee(name, salary);
         employee.setParkingPlace(new ParkingPlace(1, "A"));
+
+        Department department = new Department("Sales Department");
+        em.persist(department);
+        employee.setDepartment(department);
     }
 
     @Test

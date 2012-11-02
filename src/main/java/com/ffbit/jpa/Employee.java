@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,6 +24,7 @@ public class Employee implements Serializable {
     private Long id;
     private String name;
     private BigDecimal salary;
+    private Department department;
     private ParkingPlace parkingPlace;
 
     protected Employee() {
@@ -60,6 +63,16 @@ public class Employee implements Serializable {
 
     public void setSalary(BigDecimal salary) {
         this.salary = salary;
+    }
+
+    @ManyToOne(optional = false)
+    @JoinColumn
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @OneToOne(optional = true)
