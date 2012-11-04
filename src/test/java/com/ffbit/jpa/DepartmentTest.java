@@ -7,13 +7,16 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class DepartmentTest extends AbstractJpaTest {
-    private String name;
+    @Autowired
+    @Qualifier("departmentName")
+    private String departmentName;
 
     @Autowired
     private Department department;
@@ -24,16 +27,12 @@ public class DepartmentTest extends AbstractJpaTest {
     @Bean(name = "department")
     @Scope("prototype")
     Department instantiateValidDepartment() {
-        name = "Sales Department";
-
-        Department dep = new Department(name);
-
-        return dep;
+        return new Department(context.getBean("departmentName", String.class));
     }
 
-    @Autowired
     @Bean(name = "persistedDepartment")
     @Scope("prototype")
+    @Autowired
     public Department persistValidDepartment(Department department) {
         uglyPersist(department);
 
