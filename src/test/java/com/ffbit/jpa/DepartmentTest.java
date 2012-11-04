@@ -21,6 +21,25 @@ public class DepartmentTest extends AbstractJpaTest {
     @Autowired
     private Department persistedDepartment;
 
+    @Bean(name = "department")
+    @Scope("prototype")
+    Department instantiateValidDepartment() {
+        name = "Sales Department";
+
+        Department dep = new Department(name);
+
+        return dep;
+    }
+
+    @Autowired
+    @Bean(name = "persistedDepartment")
+    @Scope("prototype")
+    public Department persistValidDepartment(Department department) {
+        uglyPersist(department);
+
+        return department;
+    }
+
     @Test
     public void itShouldBePersistable() throws Exception {
         em.persist(department);
@@ -37,23 +56,6 @@ public class DepartmentTest extends AbstractJpaTest {
         em.merge(persistedDepartment);
 
         assertThat(persistedDepartment.getName(), is(equalTo(newName)));
-    }
-
-    @Bean(name = "department")
-    @Scope("prototype")
-    Department instantiateValidDepartment() {
-        name = "Sales Department";
-
-        return new Department(name);
-    }
-
-    @Bean(name = "persistedDepartment")
-    @Scope("prototype")
-    Department persistValidDepartment() {
-        Department dep = instantiateValidDepartment();
-        em.persist(dep);
-
-        return dep;
     }
 
 }

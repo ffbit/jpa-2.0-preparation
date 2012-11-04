@@ -6,10 +6,16 @@ import java.math.BigDecimal;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class EmployeeTest extends AbstractJpaTest {
     private String name;
     private BigDecimal salary;
+
+    @Autowired
+    private Department persistedDepartment;
 
     private Employee employee;
 
@@ -17,12 +23,8 @@ public class EmployeeTest extends AbstractJpaTest {
     public void setUp() throws Exception {
         name = "Mark Baker";
         salary = new BigDecimal("80000.50");
-        employee = new Employee(name, salary);
+        employee = new Employee(name, salary, persistedDepartment);
         employee.setParkingPlace(new ParkingPlace(1, "A"));
-
-        Department department = new Department("Sales Department");
-        em.persist(department);
-        employee.setDepartment(department);
     }
 
     @Test
