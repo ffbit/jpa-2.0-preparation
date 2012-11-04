@@ -31,10 +31,11 @@ public class Employee implements Serializable {
         super();
     }
 
-    public Employee(String name, BigDecimal salary) {
+    public Employee(String name, BigDecimal salary, Department department) {
         this();
         this.name = name;
         this.salary = salary;
+        this.department = department;
     }
 
     @Id
