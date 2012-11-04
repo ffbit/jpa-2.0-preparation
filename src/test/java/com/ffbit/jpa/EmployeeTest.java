@@ -1,29 +1,26 @@
 package com.ffbit.jpa;
 
-import static org.junit.Assert.assertNotNull;
-
-import java.math.BigDecimal;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
+import com.ffbit.jpa.mock.EmployeeMockFactory;
+
 @Configuration
 public class EmployeeTest extends AbstractJpaTest {
-    private String name;
-    private BigDecimal salary;
-
     @Autowired
-    private Department persistedDepartment;
+    private EmployeeMockFactory employeeFactory;
 
     private Employee employee;
 
     @Before
     public void setUp() throws Exception {
-        name = "Mark Baker";
-        salary = new BigDecimal("80000.50");
-        employee = new Employee(name, salary, persistedDepartment);
+        employee = employeeFactory.build();
         employee.setParkingPlace(new ParkingPlace(1, "A"));
     }
 
@@ -33,7 +30,7 @@ public class EmployeeTest extends AbstractJpaTest {
 
         Employee persisted = em.find(Employee.class, employee.getId());
 
-        assertNotNull(persisted);
+        assertThat(persisted, is(notNullValue()));
     }
 
     @Test
@@ -44,7 +41,7 @@ public class EmployeeTest extends AbstractJpaTest {
 
         Employee persisted = em.find(Employee.class, employee.getId());
 
-        assertNotNull(persisted);
+        assertThat(persisted, is(notNullValue()));
     }
 
 }
