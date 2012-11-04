@@ -5,39 +5,23 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
 
-@Configuration
+import com.ffbit.jpa.mock.DepartmentMockFactory;
+
 public class DepartmentTest extends AbstractJpaTest {
-    private String name;
-
     @Autowired
+    DepartmentMockFactory departmentFactory;
+
     private Department department;
-
-    @Autowired
     private Department persistedDepartment;
 
-    @Bean(name = "department")
-    @Scope("prototype")
-    Department instantiateValidDepartment() {
-        name = "Sales Department";
-
-        Department dep = new Department(name);
-
-        return dep;
-    }
-
-    @Autowired
-    @Bean(name = "persistedDepartment")
-    @Scope("prototype")
-    public Department persistValidDepartment(Department department) {
-        uglyPersist(department);
-
-        return department;
+    @Before
+    public void setUp() throws Exception {
+        department = departmentFactory.build();
+        persistedDepartment = departmentFactory.create();
     }
 
     @Test
@@ -53,6 +37,7 @@ public class DepartmentTest extends AbstractJpaTest {
     public void itShouldAllowUpdateTheName() throws Exception {
         String newName = "Rebranded Department";
         persistedDepartment.setName(newName);
+
         em.merge(persistedDepartment);
 
         assertThat(persistedDepartment.getName(), is(equalTo(newName)));
