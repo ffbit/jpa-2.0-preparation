@@ -46,17 +46,17 @@ public abstract class MockFactory<DomainType> {
      */
     public abstract DomainType build();
 
-    public List<DomainType> persist(int count) {
-        List<DomainType> instanties = build(count);
+    public List<DomainType> create(int count) {
+        List<DomainType> instances = build(count);
 
-        for (DomainType instance : instanties) {
-            create(instance);
+        for (DomainType instance : instances) {
+            persist(instance);
         }
 
-        return instanties;
+        return instances;
     }
 
-    protected DomainType create(DomainType entity) {
+    protected DomainType persist(DomainType entity) {
         em.persist(entity);
 
         return entity;
@@ -68,7 +68,7 @@ public abstract class MockFactory<DomainType> {
      * @return a persisted DomainType instance
      */
     public DomainType create() {
-        return create(build());
+        return persist(build());
     }
 
 }
