@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ffbit.jpa.Department;
 import com.ffbit.jpa.Employee;
-import com.ffbit.jpa.annotation.MockRepository;
 import com.github.javafaker.Faker;
 
 @MockRepository
@@ -17,7 +16,7 @@ public class EmployeeMockFactory extends MockFactory<Employee> {
     private Faker faker;
 
     @Autowired
-    private MockFactory<Department> departmentFactory;
+    private DepartmentMockFactory departmentFactory;
 
     @Override
     public Employee build() {

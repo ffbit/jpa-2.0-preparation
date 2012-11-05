@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ffbit.jpa.Department;
-import com.ffbit.jpa.annotation.MockRepository;
 import com.github.javafaker.Faker;
 
 @MockRepository
