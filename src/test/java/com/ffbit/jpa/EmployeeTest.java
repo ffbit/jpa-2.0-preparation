@@ -21,7 +21,6 @@ public class EmployeeTest extends AbstractJpaTest {
     @Before
     public void setUp() throws Exception {
         employee = employeeFactory.build();
-        employee.setParkingPlace(new ParkingPlace(1, "A"));
     }
 
     @Test
