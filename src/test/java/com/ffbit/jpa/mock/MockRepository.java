@@ -1,4 +1,4 @@
-package com.ffbit.jpa.annotation;
+package com.ffbit.jpa.mock;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

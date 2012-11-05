@@ -6,8 +6,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.ffbit.jpa.annotation.MockRepository;
-
 /**
  * Mock factory for a domain @Entity type.
  * 
