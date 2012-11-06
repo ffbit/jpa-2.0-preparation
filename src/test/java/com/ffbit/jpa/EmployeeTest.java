@@ -24,7 +24,7 @@ public class EmployeeTest extends AbstractJpaTest {
     }
 
     @Test
-    public void itShoulBePersistable() throws Exception {
+    public void itShouldBePersistable() throws Exception {
         em.persist(employee);
 
         Employee persisted = em.find(Employee.class, employee.getId());
@@ -33,7 +33,7 @@ public class EmployeeTest extends AbstractJpaTest {
     }
 
     @Test
-    public void itShoulBePersistableWithoutParkingPlace() throws Exception {
+    public void itShouldBePersistableWithoutParkingPlace() throws Exception {
         employee.setParkingPlace(null);
 
         em.persist(employee);
