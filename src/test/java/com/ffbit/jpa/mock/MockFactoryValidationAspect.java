@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -41,7 +42,7 @@ public class MockFactoryValidationAspect {
     @AfterReturning(pointcut = "mockFactory() && buildOrCreate()",
             returning = "entity")
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void validate(Object entity) {
+    public void validate(JoinPoint joinPoint, Object entity) {
         Set failures = validator.validate(entity);
 
         if (failures.isEmpty()) {
@@ -49,10 +50,10 @@ public class MockFactoryValidationAspect {
         }
 
         String message = String.format(
-                "Validation failed for [%s] after build", entity.getClass());
-        // TODO: Spring intercepts this kind of Exceptions, so it woun't be printed. 
+                "Validation failed for [%s] instance returned from the "
+                        + "`%s` method", entity.getClass(),
+                joinPoint.getSignature());
         throw new ConstraintViolationException(message, failures);
-
     }
 
 }
