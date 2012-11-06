@@ -7,19 +7,22 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- * Mock factory for a domain @Entity type.
+ * Mock factory for a domain {@link javax.persistence.Entity @Entity} type.
  * 
  * Inspired by:
  * <ul>
- * <li>factory_girl ruby gem - https://github.com/thoughtbot/factory_girl</li>
- * <li>David Green's article -
- * http://java.dzone.com/articles/patterns-better-unit-testing</li>
+ * <li><a href="https://github.com/thoughtbot/factory_girl">factory_girl</a>
+ * ruby gem</li>
+ * <li>David Green's -
+ * <a href="http://java.dzone.com/articles/patterns-better-unit-testing">article
+ * </a>
+ * </li>
  * </ul>
  * 
  * @author Dmytro Chyzhykov
  * 
  * @param <DomainType>
- *            a domain @Entity type
+ *            a domain {@link javax.persistence.Entity @Entity} type
  */
 @MockRepository
 public abstract class MockFactory<DomainType> {
