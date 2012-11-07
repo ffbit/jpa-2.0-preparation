@@ -11,10 +11,10 @@
 
         <properties>
             <property name="javax.persistence.jdbc.dialect"
-                value="org.hibernate.dialect.HSQLDialect" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:test" />
+                value="hibernate.dialect.H2Dialect" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test" />
             <property name="javax.persistence.jdbc.driverClass"
-                value="org.hsqldb.jdbcDriver" />
+                value="org.h2.jdbcDriver" />
             <property name="javax.persistence.jdbc.user" value="sa" />
             <property name="javax.persistence.jdbc.password"
                 value="" />
