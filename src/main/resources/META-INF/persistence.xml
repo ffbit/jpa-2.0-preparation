@@ -6,6 +6,7 @@
     <persistence-unit name="test" transaction-type="RESOURCE_LOCAL">
         <class>com.ffbit.jpa.Employee</class>
         <class>com.ffbit.jpa.ParkingPlace</class>
+        <class>com.ffbit.jpa.Department</class>
 
         <properties>
             <property name="javax.persistence.jdbc.dialect"
