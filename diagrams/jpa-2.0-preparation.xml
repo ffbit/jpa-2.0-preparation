@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><entities>
 	<entity>
-		<entity-name>com.ffbit.jpa.Employee</entity-name>
+		<entity-name>com.ffbit.jpa.ParkingPlace</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>166</entity-height>
-		<entity-X-Coordinate>50</entity-X-Coordinate>
-		<entity-Y-Coordinate>54</entity-Y-Coordinate>
+		<entity-height>128</entity-height>
+		<entity-X-Coordinate>438</entity-X-Coordinate>
+		<entity-Y-Coordinate>80</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
 	</entity>
 
 	<entity>
-		<entity-name>com.ffbit.jpa.ParkingPlace</entity-name>
+		<entity-name>com.ffbit.jpa.Employee</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>128</entity-height>
-		<entity-X-Coordinate>250</entity-X-Coordinate>
-		<entity-Y-Coordinate>73</entity-Y-Coordinate>
+		<entity-height>186</entity-height>
+		<entity-X-Coordinate>215</entity-X-Coordinate>
+		<entity-Y-Coordinate>51</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.ffbit.jpa.Department</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>108</entity-height>
+		<entity-X-Coordinate>25</entity-X-Coordinate>
+		<entity-Y-Coordinate>90</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
