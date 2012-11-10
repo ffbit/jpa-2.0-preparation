@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ffbit.jpa.Department;
 import com.ffbit.jpa.Employee;
 import com.ffbit.jpa.ParkingPlace;
+import com.ffbit.jpa.Position;
 import com.github.javafaker.Faker;
 
 @MockRepository
@@ -22,10 +23,14 @@ public class EmployeeMockFactory extends MockFactory<Employee> {
     @Autowired
     private ParkingPlaceMockFactory parkingPlaceFactory;
 
+    @Autowired
+    private PositionMockFactory positionFactory;
+
     @Override
     public Employee build() {
         Employee employee = new Employee(name(), salary(), department());
         employee.setParkingPlace(parkingPlace());
+        employee.setPosition(position());
 
         return employee;
     }
@@ -44,6 +49,10 @@ public class EmployeeMockFactory extends MockFactory<Employee> {
 
     private ParkingPlace parkingPlace() {
         return parkingPlaceFactory.create();
+    }
+
+    private Position position() {
+        return positionFactory.create();
     }
 
 }
