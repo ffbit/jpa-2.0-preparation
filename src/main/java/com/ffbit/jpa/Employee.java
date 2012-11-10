@@ -25,6 +25,7 @@ public class Employee implements Serializable {
     private String name;
     private BigDecimal salary;
     private Department department;
+    private Position position;
     private ParkingPlace parkingPlace;
 
     protected Employee() {
@@ -74,6 +75,15 @@ public class Employee implements Serializable {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    @ManyToOne(optional = false)
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     @OneToOne(optional = true)
