@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.google.common.base.Objects;
+
 @Entity
 @Table(name = "employees")
 @Access(AccessType.PROPERTY)
@@ -93,6 +95,24 @@ public class Employee implements Serializable {
 
     public void setParkingPlace(ParkingPlace parkingPlace) {
         this.parkingPlace = parkingPlace;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Employee other = (Employee) obj;
+
+        return Objects.equal(name, other.name);
     }
 
 }
