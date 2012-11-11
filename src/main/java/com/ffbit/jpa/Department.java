@@ -1,15 +1,19 @@
 package com.ffbit.jpa;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.google.common.base.Objects;
@@ -22,12 +26,14 @@ public class Department implements Serializable {
 
     private Integer id;
     private String name;
+    private Set<Employee> employees;
 
     protected Department() {
-        super();
+        employees = new HashSet<Employee>();
     }
 
     public Department(String name) {
+        this();
         this.name = name;
     }
 
@@ -49,6 +55,20 @@ public class Department implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @OneToMany(mappedBy = "department", cascade = CascadeType.PERSIST)
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
+    }
+
+    public boolean addEmployee(Employee employee) {
+        employee.setDepartment(this);
+        return getEmployees().add(employee);
     }
 
     @Override

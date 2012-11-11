@@ -1,5 +1,6 @@
 package com.ffbit.jpa;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
@@ -30,9 +31,11 @@ public class EmployeeTest extends AbstractJpaTest {
 
     private Employee employee;
 
+    private String name;
+
     @Before
     public void setUp() throws Exception {
-        String name = "John Carter";
+        name = "John Carter";
         BigDecimal salary = new BigDecimal("10000.05");
         Department department = departmentFactory.create();
 
@@ -43,9 +46,7 @@ public class EmployeeTest extends AbstractJpaTest {
 
     @Test
     public void itShouldBePersistable() throws Exception {
-        em.persist(employee);
-        em.flush();
-        em.clear();
+        persistFlushAndClean(employee);
 
         Employee persisted = em.find(Employee.class, employee.getId());
 
@@ -61,6 +62,16 @@ public class EmployeeTest extends AbstractJpaTest {
         Employee persisted = em.find(Employee.class, employee.getId());
 
         assertThat(persisted, is(notNullValue()));
+    }
+
+    @Test
+    public void employeesWithTheSameNameShouldBeEqualse() throws Exception {
+        Employee first = new Employee(name, BigDecimal.ONE,
+                departmentFactory.build());
+        Employee second = new Employee(name, BigDecimal.TEN,
+                departmentFactory.build());
+
+        assertThat(first, equalTo(second));
     }
 
 }
