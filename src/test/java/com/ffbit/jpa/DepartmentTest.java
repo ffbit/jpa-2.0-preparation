@@ -10,10 +10,14 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ffbit.jpa.mock.DepartmentMockFactory;
+import com.ffbit.jpa.mock.EmployeeMockFactory;
 
 public class DepartmentTest extends AbstractJpaTest {
     @Autowired
-    DepartmentMockFactory departmentFactory;
+    private DepartmentMockFactory departmentFactory;
+
+    @Autowired
+    private EmployeeMockFactory employeeFactory;
 
     private Department department;
     private Department persistedDepartment;
@@ -26,7 +30,7 @@ public class DepartmentTest extends AbstractJpaTest {
 
     @Test
     public void itShouldBePersistable() throws Exception {
-        em.persist(department);
+        persistFlushAndClean(department);
 
         Department persisted = em.find(Department.class, department.getId());
 
@@ -41,6 +45,19 @@ public class DepartmentTest extends AbstractJpaTest {
         em.merge(persistedDepartment);
 
         assertThat(persistedDepartment.getName(), is(equalTo(newName)));
+    }
+
+    @Test
+    public void itShouldAddAndPersistEmployees() throws Exception {
+        department.addEmployee(employeeFactory.build());
+        department.addEmployee(employeeFactory.build());
+
+        persistFlushAndClean(department);
+
+        Department persisted = em.find(Department.class, department.getId());
+
+        assertThat("a department should persist its employees", 2, is(persisted
+                .getEmployees().size()));
     }
 
 }
