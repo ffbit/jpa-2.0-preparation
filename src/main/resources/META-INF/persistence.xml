@@ -8,6 +8,7 @@
         <class>com.ffbit.jpa.Employee</class>
         <class>com.ffbit.jpa.ParkingPlace</class>
         <class>com.ffbit.jpa.Position</class>
+        <class>com.ffbit.jpa.Project</class>
 
         <properties>
             <property name="javax.persistence.jdbc.dialect"

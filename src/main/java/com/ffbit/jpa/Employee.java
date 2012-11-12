@@ -2,6 +2,7 @@ package com.ffbit.jpa;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Set;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -11,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -29,6 +31,7 @@ public class Employee implements Serializable {
     private Department department;
     private Position position;
     private ParkingPlace parkingPlace;
+    private Set<Project> projects;
 
     protected Employee() {
         super();
@@ -86,6 +89,15 @@ public class Employee implements Serializable {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    @ManyToMany
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 
     @OneToOne(optional = true)

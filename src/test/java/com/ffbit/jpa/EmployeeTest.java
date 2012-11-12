@@ -65,7 +65,7 @@ public class EmployeeTest extends AbstractJpaTest {
     }
 
     @Test
-    public void employeesWithTheSameNameShouldBeEqualse() throws Exception {
+    public void employeesWithTheSameNameShouldBeEqual() throws Exception {
         Employee first = new Employee(name, BigDecimal.ONE,
                 departmentFactory.build());
         Employee second = new Employee(name, BigDecimal.TEN,
