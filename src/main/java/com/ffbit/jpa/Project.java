@@ -1,6 +1,8 @@
 package com.ffbit.jpa;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,11 +16,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import com.google.common.base.Objects;
 
 /**
- * Represents a project which an employee working on
+ * Represents a project which an employee is working on
  *
  * @author Dmytro Chyzhykov
  */
@@ -30,10 +35,18 @@ public class Project implements Serializable {
 
     private Integer id;
     private String name;
-    private Set<Employee> employees;
+
+    @Access(AccessType.FIELD)
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(updatable = false)
+    private Calendar createdAt;
+
+    private Set<Employee> participants;
 
     protected Project() {
-        employees = new HashSet<Employee>();
+        // TODO: Find a way to get timestamp from DB, not from Java code
+        createdAt = Calendar.getInstance();
+        participants = new HashSet<Employee>();
     }
 
     public Project(String name) {
@@ -61,13 +74,22 @@ public class Project implements Serializable {
         this.name = name;
     }
 
-    @ManyToMany(mappedBy = "projects")
-    public Set<Employee> getEmployees() {
-        return employees;
+    @Transient
+    public Date getCreatedAt() {
+        return createdAt.getTime();
     }
 
-    public void setEmployees(Set<Employee> employees) {
-        this.employees = employees;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt.setTime(createdAt);
+    }
+
+    @ManyToMany(mappedBy = "projects")
+    public Set<Employee> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(Set<Employee> participants) {
+        this.participants = participants;
     }
 
     @Override
@@ -90,8 +112,10 @@ public class Project implements Serializable {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(getClass()).add("id", id)
-                .add("name", "name").toString();
+        return Objects.toStringHelper(getClass())
+                .add("id", id)
+                .add("name", name)
+                .toString();
     }
 
 }
