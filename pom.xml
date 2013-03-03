@@ -204,6 +204,11 @@
             <id>sonar</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
+                <file>
+                    <!-- just run `project.properties_template project.properties` 
+                        and configure sonar sensitive properties -->
+                    <exists>project.properties</exists>
+                </file>
             </activation>
             <properties>
                 <postgresql.version>9.1-901-1.jdbc4</postgresql.version>
@@ -218,7 +223,7 @@
                 <sonar.jdbc.driverClassName>
                     org.postgresql.Driver
                 </sonar.jdbc.driverClassName>
-                <!-- see ${sonar.jdbc.username} and ${sonar.jdbc.password} 
+                <!-- see ${sonar.jdbc.username} and ${sonar.jdbc.password}
                     in project.properties file -->
 
                 <!-- Sonar server settings -->
