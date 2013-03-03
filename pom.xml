@@ -203,7 +203,6 @@
         <profile>
             <id>sonar</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
                 <file>
                     <!-- just run `project.properties_template project.properties` 
                         and configure sonar sensitive properties -->
